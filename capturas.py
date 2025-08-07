@@ -1,2 +1,5 @@
+from typing_extensions import Writer
+
+
 def fazercaptura(driver, nomearquivo):
-driver.savescreenshot(nomearquivo)
+	Writer.savescreenshot(nomearquivo)
