@@ -1,36 +1,74 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait, Select
 
 from selenium.webdriver.support import expected_conditions as EC
 
 from seletores import *
 
-def esperar_click(driver, by, seletor, timeout=10):
+def esperareclicar(driver, by, seletor, timeout=10):
 
-return WebDriverWait(driver, timeout).until(EC.elementtobe_clickable((by, seletor)))
+elemento = WebDriverWait(driver, timeout).until(EC.elementtobe_clickable((by, seletor)))
 
-def clicaraba(driver, textoaba):
+elemento.click()
 
-aba = WebDriverWait(driver, 10).until(
+return elemento
 
-EC.elementtobeclickable((By.XPATH, f"//a[contains(text(), '{textoaba}')]")))
+def clicar_aba(driver, nome):
 
-aba.click()
+caminho = XPATH_ABA.format(nome)
+
+esperareclicar(driver, By.XPATH, caminho)
+
+def marcar_checkbox(driver, seletor):
+
+checkbox = WebDriverWait(driver, 10).until(EC.elementtobeclickable((By.CSSSELECTOR, seletor)))
+
+if not checkbox.is_selected():
+
+checkbox.click()
+
+def desmarcar_checkbox(driver, seletor):
+
+checkbox = WebDriverWait(driver, 10).until(EC.elementtobeclickable((By.CSSSELECTOR, seletor)))
+
+if checkbox.is_selected():
+
+checkbox.click()
 
 def selecionar_operacao(driver, valor):
 
-select = esperarclick(driver, By.CSSSELECTOR, SELETOR_OPERACAO)
+selectelement = WebDriverWait(driver, 10).until(EC.elementtobeclickable((By.CSSSELECTOR, SELETOROPERACAO)))
 
-from selenium.webdriver.support.ui import Select
+Select(selectelement).selectby_value(str(valor))
 
-Select(select).selectbyvalue(str(valor))
+def preencherperiodo(driver, dataini, data_fim):
 
-def preencherperiodo(driver, datainicial, data_final):
+campoini = WebDriverWait(driver, 10).until(EC.elementtobeclickable((By.CSSSELECTOR, SELETORDATA_INICIAL)))
 
-campoini = esperarclick(driver, By.CSSSELECTOR, SELETORDATA_INICIAL)
+campofim = WebDriverWait(driver, 10).until(EC.elementtobeclickable((By.CSSSELECTOR, SELETORDATA_FINAL)))
 
-campofim = esperarclick(driver, By.CSSSELECTOR, SELETORDATA_FINAL)
+campo_ini.clear()
 
-campoini.clear(); campoini.sendkeys(datainicial)
+campoini.sendkeys(data_ini)
 
-campofim.clear(); campofim.sendkeys(datafinal)
+campo_fim.clear()
+
+campofim.sendkeys(data_fim)
+
+def clicar_consultar(driver):
+
+botao = WebDriverWait(driver, 10).until(EC.elementtobeclickable((By.CSSSELECTOR, SELETORBOTAOCONSULTAR)))
+
+botao.click()
+
+try:
+
+WebDriverWait(driver, 3).until(EC.alertispresent())
+
+alerta = driver.switch_to.alert
+
+alerta.accept()
+
+except:
+
+pass
