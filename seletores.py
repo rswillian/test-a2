@@ -7,8 +7,8 @@ SELETOR_TOTALIZADO = "input[value='Totalizado por mês']"
 
 SELETOR_OPERACAO = '#operacao'
 
-SELETORDATAINICIAL = '#dataInicial'
+SELETORDATAINICIAL = '#DtPeriodoInicio'
 
-SELETORDATAFINAL = '#dataFinal'
+SELETORDATAFINAL = '#DtPeriodoFim'
 
-SELETORBOTAOCONSULTAR = '#consultarBtn'
+SELETORBOTAOCONSULTAR = 'NFe > fieldset > fieldset:nth-child(14) > div:nth-child(3) > table > tbody > tr > td > input'

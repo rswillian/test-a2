@@ -11,7 +11,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 from selenium.webdriver.support import expected_conditions as EC
 
-URL = "SUAURLAQUI"
+URL = "https://www.sefaz.rs.gov.br/Receita/PainelUsuario.aspx"
 
 DATA_INICIAL = "01/01/2024"
 
